@@ -1,5 +1,6 @@
 .jumbotron{
-    background-image:url("../images/bacteria.jnp.webp");
-    background-size:100% 100%;
+    background-image:url("../images/bacteriaG.jpg");
+    background-size:120% 120%;
     text-align: center;
+    text-decoration: solid;
 }
