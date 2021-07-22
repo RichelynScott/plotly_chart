@@ -62,7 +62,11 @@ function buildCharts(sample) {
     // 4. Create a variable that filters the samples for the object with the desired sample number.
     var sampleNumber = bacteriaSamples.filter(sampleObj => sampleObj.id == sample);
     //  5. Create a variable that holds the first sample in the array.
+
+    var metadataArray = data.metadata.filter(sampleObj => sampleObj.id == sample);
+
     var firstSample = sampleNumber[0];
+    var metadata =metadataArray[0];
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otuIds = firstSample.otu_ids;
@@ -73,8 +77,8 @@ function buildCharts(sample) {
     // Hint: Get the the top 10 otu_ids and map them in descending order  
     //  so the otu_ids with the most bacteria are last. 
 
-    var yticks = otuID.slice(0,10).map(otuID => 'OTU ${otuIds}').reverse();
-    console.log(yticks);
+    var yticks = otuIds.slice(0,10).map(otuID => `OTU ${otuID}`).reverse();
+    
     // 8. Create the trace for the bar chart. 
     var barData = [{
       x: sampleValues.slice(0,10).reverse(),
@@ -95,7 +99,7 @@ function buildCharts(sample) {
 // Bubble Cart Creation 
     // 1. Create the trace for the bubble chart.
     var bubbleData = [{
-      x: otuID,
+      x: otuIds,
       y: sampleValues,
       text: otuLabels,
       mode: 'markers',
@@ -111,7 +115,8 @@ function buildCharts(sample) {
       xaxis:{title:"OTU ID"},
       height:500,
       width:1000
-    },
+    };
+
     // 3. Use Plotly to plot the data with the layout.
     Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
 
